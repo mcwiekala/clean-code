@@ -40,7 +40,7 @@ class TextProcessorTest {
     @Test
     void checkProcess4() {
         TextFinder textFinder = new TextFinder("abcabc123", "ab", TextOrder.ALPHABETICAL, NumberOrder.DESCENDING);
-        List<Character> result = textFinder.find();
+        List<Character> result = textFinder.findCharacters();
         assertThat(result).hasSize(2);
         assertThat(result.get(0)).isEqualTo('a');
         assertThat(result.get(1)).isEqualTo('b');

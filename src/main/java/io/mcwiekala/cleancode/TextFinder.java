@@ -31,7 +31,7 @@ class TextFinder {
             .toList();
     }
 
-    List<Character> find() {
+    List<Character> findCharacters() {
         Map<Character, Long> charactersByNumberOfOccurrence = charactersToCheck.stream()
             .collect(groupingBy(character -> character, Collectors.counting()));
 
@@ -52,7 +52,7 @@ class TextFinder {
     }
 
     enum TextOrder {
-        ALPHABETICAL, NON_ALPHABETICAL
+        ALPHABETICAL, REVERSE_ALPHABETICAL
     }
 
     enum NumberOrder {

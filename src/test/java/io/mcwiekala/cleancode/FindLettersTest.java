@@ -14,8 +14,8 @@ class FindLettersTest {
 
     @Test
     void checkProcess1() {
-        TextFinder textFinder = new TextFinder("aabbcc", "aba", TextOrder.NON_ALPHABETICAL, NumberOrder.ASCENDING);
-        List<Character> result1 = textFinder.find();
+        TextFinder textFinder = new TextFinder("aabbcc", "aba", TextOrder.REVERSE_ALPHABETICAL, NumberOrder.ASCENDING);
+        List<Character> result1 = textFinder.findCharacters();
         assertThat(result1).hasSize(2);
         assertThat(result1.get(0)).isEqualTo('b');
         assertThat(result1.get(1)).isEqualTo('a');
@@ -23,8 +23,8 @@ class FindLettersTest {
 
     @Test
     void checkProcess2() {
-        TextFinder textFinder = new TextFinder("123aabc", "abcdef", TextOrder.NON_ALPHABETICAL, NumberOrder.ASCENDING);
-        List<Character> result = textFinder.find();
+        TextFinder textFinder = new TextFinder("123aabc", "abcdef", TextOrder.REVERSE_ALPHABETICAL, NumberOrder.ASCENDING);
+        List<Character> result = textFinder.findCharacters();
         assertThat(result).hasSize(3);
         assertThat(result.get(0)).isEqualTo('c');
         assertThat(result.get(1)).isEqualTo('b');
@@ -33,8 +33,8 @@ class FindLettersTest {
 
     @Test
     void checkProcess3() {
-        TextFinder textFinder = new TextFinder("AaBbbCCc", "a", TextOrder.NON_ALPHABETICAL, NumberOrder.DESCENDING);
-        List<Character> result = textFinder.find();
+        TextFinder textFinder = new TextFinder("AaBbbCCc", "a", TextOrder.REVERSE_ALPHABETICAL, NumberOrder.DESCENDING);
+        List<Character> result = textFinder.findCharacters();
         assertThat(result).hasSize(1);
         assertThat(result.get(0)).isEqualTo('a');
     }
@@ -42,7 +42,7 @@ class FindLettersTest {
     @Test
     void checkProcess4() {
         TextFinder textFinder = new TextFinder("abcabc123", "ab", TextOrder.ALPHABETICAL, NumberOrder.DESCENDING);
-        List<Character> result = textFinder.find();
+        List<Character> result = textFinder.findCharacters();
         assertThat(result).hasSize(2);
         assertThat(result.get(0)).isEqualTo('a');
         assertThat(result.get(1)).isEqualTo('b');
@@ -51,7 +51,7 @@ class FindLettersTest {
     @Test
     void checkProcess5() {
         TextFinder textFinder = new TextFinder("abc123", "123", TextOrder.ALPHABETICAL, NumberOrder.ASCENDING);
-        List<Character> result = textFinder.find();
+        List<Character> result = textFinder.findCharacters();
         assertThat(result).hasSize(3);
         assertThat(result.get(0)).isEqualTo('1');
         assertThat(result.get(1)).isEqualTo('2');
@@ -61,7 +61,7 @@ class FindLettersTest {
     @Test
     void checkProcess6() {
         TextFinder textFinder = new TextFinder("ccddaabbb123", "bcd", TextOrder.ALPHABETICAL, NumberOrder.DESCENDING);
-        List<Character> result = textFinder.find();
+        List<Character> result = textFinder.findCharacters();
         assertThat(result).hasSize(3);
         assertThat(result.get(0)).isEqualTo('b');
         assertThat(result.get(1)).isEqualTo('c');
@@ -70,8 +70,8 @@ class FindLettersTest {
 
     @Test
     void checkProcess7() {
-        TextFinder textFinder = new TextFinder("ccddaabbb123", "bcd", TextOrder.NON_ALPHABETICAL, NumberOrder.ASCENDING);
-        List<Character> result = textFinder.find();
+        TextFinder textFinder = new TextFinder("ccddaabbb123", "bcd", TextOrder.REVERSE_ALPHABETICAL, NumberOrder.ASCENDING);
+        List<Character> result = textFinder.findCharacters();
         assertThat(result).hasSize(3);
         assertThat(result.get(0)).isEqualTo('d');
         assertThat(result.get(1)).isEqualTo('c');
