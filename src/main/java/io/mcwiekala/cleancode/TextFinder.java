@@ -17,9 +17,9 @@ class TextFinder {
     TextFinder(String textToCheck, String valuesToFind, TextOrder textOrder, NumberOrder numberOrder) {
         this.textOrder = textOrder;
         this.numberOrder = numberOrder;
-        List<Character> inputCharacters = mapStringToCharacterList(textToCheck);
+        List<Character> charactersToCheck = mapStringToCharacterList(textToCheck);
         List<Character> charactersToFind = mapStringToCharacterList(valuesToFind);
-        List<Character> filteredCharactersToCheck = inputCharacters.stream()
+        List<Character> filteredCharactersToCheck = charactersToCheck.stream()
             .filter(charactersToFind::contains)
             .toList();
         this.charactersToCheck = filteredCharactersToCheck;
