@@ -45,8 +45,8 @@ class TextFinder {
     }
 
     private Comparator<? super Entry<Character, Long>> createSortingStrategy() {
-        Comparator<Entry<Character, Long>> compareByNumber = Comparator.comparingLong(Entry::getValue);
-        Comparator<Entry<Character, Long>> compareByString = Comparator.comparing(Entry::getKey);
+        Comparator<Entry<Character, Long>> compareByNumber = Entry.comparingByValue();
+        Comparator<Entry<Character, Long>> compareByString = Entry.comparingByKey();
         compareByNumber = numberOrder == NumberOrder.ASCENDING ? compareByNumber : compareByNumber.reversed();
         compareByString = textOrder == TextOrder.ALPHABETICAL ? compareByString : compareByString.reversed();
         return compareByNumber.thenComparing(compareByString);
@@ -59,5 +59,4 @@ class TextFinder {
     enum NumberOrder {
         ASCENDING, DESCENDING
     }
-
 }
