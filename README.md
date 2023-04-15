@@ -11,9 +11,9 @@ I just have written an article about Clean Code and how to deal with legacy. ðŸ‘
 There is a practical example there and 3 approaches of how can you tackle a problem. The first one is based on OOP the second is on Functional Programming. The last one is a combination of both. ðŸ˜®
 
 
-### This repository is a part of my article about Clean Code yo can read it here:
-https://medium.com/@michal.cwiekala/dont-code-tell-the-story-a-few-words-about-clean-code-in-practice-3c201f41f741
+### This repository is a part of my article about Clean Code you can read it here:
 
-or
 
-https://www.linkedin.com/pulse/dont-code-tell-story-instead-few-words-clean-practice-micha%C5%82-%C4%87wi%C4%99ka%C5%82a
+[Medium](https://medium.com/@michal.cwiekala/dont-code-tell-the-story-a-few-words-about-clean-code-in-practice-3c201f41f741) 
+
+[LinkedIn](https://www.linkedin.com/pulse/dont-code-tell-story-instead-few-words-clean-practice-micha%C5%82-%C4%87wi%C4%99ka%C5%82a) 
