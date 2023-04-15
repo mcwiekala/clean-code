@@ -17,12 +17,11 @@ class TextFinder {
     TextFinder(String textToCheck, String valuesToFind, TextOrder textOrder, NumberOrder numberOrder) {
         this.textOrder = textOrder;
         this.numberOrder = numberOrder;
-        List<Character> charactersToCheck = mapStringToCharacterList(textToCheck);
+        List<Character> unfilteredCharactersToCheck = mapStringToCharacterList(textToCheck);
         List<Character> charactersToFind = mapStringToCharacterList(valuesToFind);
-        List<Character> filteredCharactersToCheck = charactersToCheck.stream()
+        this.charactersToCheck = unfilteredCharactersToCheck.stream()
             .filter(charactersToFind::contains)
             .toList();
-        this.charactersToCheck = filteredCharactersToCheck;
     }
 
     private static List<Character> mapStringToCharacterList(String text) {
@@ -32,20 +31,22 @@ class TextFinder {
     }
 
     List<Character> findCharacters() {
+        Comparator<? super Entry<Character, Long>> comparatorByNumberAndText = createSortingStrategy();
+        return sortCharactersByOrder(comparatorByNumberAndText);
+    }
+
+    private List<Character> sortCharactersByOrder(Comparator<? super Entry<Character, Long>> comparator) {
         Map<Character, Long> charactersByNumberOfOccurrence = charactersToCheck.stream()
             .collect(groupingBy(character -> character, Collectors.counting()));
-
-        Comparator<? super Entry<Character, Long>> comparator = createSortingStrategy();
-
         return charactersByNumberOfOccurrence.entrySet().stream()
             .sorted(comparator)
             .map(Entry::getKey)
             .toList();
     }
 
-    private Comparator createSortingStrategy() {
-        Comparator compareByNumber = Comparator.comparingLong(Entry<String, Long>::getValue);
-        Comparator compareByString = Comparator.comparing(Entry<String, Long>::getKey);
+    private Comparator<? super Entry<Character, Long>> createSortingStrategy() {
+        Comparator<Entry<Character, Long>> compareByNumber = Comparator.comparingLong(Entry::getValue);
+        Comparator<Entry<Character, Long>> compareByString = Comparator.comparing(Entry::getKey);
         compareByNumber = numberOrder == NumberOrder.ASCENDING ? compareByNumber : compareByNumber.reversed();
         compareByString = textOrder == TextOrder.ALPHABETICAL ? compareByString : compareByString.reversed();
         return compareByNumber.thenComparing(compareByString);
